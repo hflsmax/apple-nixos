@@ -2,15 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-let
-  unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-    config.allowUnfree = true;
-  };
-  stable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-25.11.tar.gz") {
-    config.allowUnfree = true;
-  };
-in {
+{ config, pkgs, pkgs-unstable, pkgs-stable, pkgs-grafana, ... }:
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -83,6 +76,7 @@ in {
 
   # Enable networking
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -137,7 +131,7 @@ in {
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
-    package = unstable.tailscale;
+    package = pkgs-unstable.tailscale;
   };
 
   users.motd = ''
@@ -389,7 +383,7 @@ in {
   programs.firefox.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with stable; [
+  programs.nix-ld.libraries = with pkgs-stable; [
     openssl
     stdenv.cc.cc.lib
     curl
@@ -501,11 +495,7 @@ in {
   };
 
   services.grafana = {
-    package = let
-      pkgs = import (builtins.fetchTarball {
-          url = "https://github.com/NixOS/nixpkgs/archive/47c1824c261a343a6acca36d168a0a86f0e66292.tar.gz";
-      }) {};
-    in pkgs.grafana;
+    package = pkgs-grafana.grafana;
     enable = true;
     settings.log.level = "warn";
     settings.server.http_port = 2342;
@@ -542,11 +532,9 @@ in {
     ];
   };
 
-  services.eternal-terminal = {
-    enable = false;
-    port = 2021;
-    idleTimeout = 86400;
-  };
+
+  services.tether.enable = true;
+
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 8093 5201 ];

@@ -49,9 +49,60 @@
         "type": "github"
       }
     },
+    "nixpkgs-grafana": {
+      "locked": {
+        "lastModified": 1720393365,
+        "narHash": "sha256-tqagWw38sP0IXggMWHmkr1RY5xy4r3mFT7cnyz1hmnM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "47c1824c261a343a6acca36d168a0a86f0e66292",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "47c1824c261a343a6acca36d168a0a86f0e66292",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1767313136,
+        "narHash": "sha256-16KkgfdYqjaeRGBaYsNrhPRRENs0qzkQVUooNHtoy2w=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ac62194c3917d5f474c1a844b6fd6da2db95077d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1773821835,
+        "narHash": "sha256-TJ3lSQtW0E2JrznGVm8hOQGVpXjJyXY2guAxku2O9A4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b40629efe5d6ec48dd1efba650c797ddbd39ace0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "nixpkgs-grafana": "nixpkgs-grafana",
+        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "tether": "tether"
       }
     },
@@ -101,11 +152,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1774141260,
-        "narHash": "sha256-P9y0U+NFYdHht3hmZqisTaU8kcEfsx6nSqJS+q0RPKk=",
+        "lastModified": 1774143107,
+        "narHash": "sha256-WZdjvj5/PqwHyo/24QSXpbqqMOA2j6iN61bF7WZN+hQ=",
         "owner": "hflsmax",
         "repo": "tether",
-        "rev": "87c158dc96f8d2753aa1cc5c4d4a65d4ee7195f5",
+        "rev": "5b146898223fe211d87dbcc11c9c7fc07a5c969a",
         "type": "github"
       },
       "original": {
